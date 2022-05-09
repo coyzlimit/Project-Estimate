@@ -1,0 +1,38 @@
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    max-width: 500px;
+    margin: auto;
+
+    section {
+        display: flex;
+
+        .col {
+            flex: 1;
+            margin-right: 16px;
+
+            .empItem {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .col-2 {
+            display: flex;
+            flex-direction: column-reverse;
+            padding-bottom: 20px;
+
+            button {
+                background-color: #3f51b5;
+            }
+        }
+    }
+
+    button {
+        background: #4caf50;
+        color: white;
+    }
+
+    .submit { margin-top: 24px; }
+}

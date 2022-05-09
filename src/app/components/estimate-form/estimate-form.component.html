@@ -1,0 +1,40 @@
+<div>
+    <form [formGroup]="form" (submit)="saveTask()">
+        <mat-form-field *ngIf="!isAdd">
+            <mat-select placeholder="Task" (selectionChange)="taskSelected($event.value)" formControlName="task">
+                <mat-option *ngFor="let task of tasks" [value]="task.taskId">{{task.task}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Project" formControlName="project">
+                <mat-option *ngFor="let project of projects" [value]="project.id">{{project.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field *ngIf="isAdd">
+            <input matInput placeholder="Task" formControlName="task">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="number" placeholder="Total Estimate" formControlName="totalEstimate">
+        </mat-form-field>
+
+        <section>
+            <div class="col">
+                <div class="empItem" *ngFor="let empEstimate of formempEstimates.controls; let i = index" [formGroup]="getFormGroup(empEstimate)">
+                    <mat-form-field>
+                        <mat-select placeholder="Employee" formControlName="employee">
+                            <mat-option *ngFor="let employee of employees" [value]="employee.id">{{employee.firstName+' '+employee.lastName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="number" placeholder="Hours" formControlName="estimate">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-2">
+                <button *ngIf="isAdd" mat-flat-button type="button" (click)="addEmpEstimates()">Add</button>
+            </div>
+        </section>
+
+        <button *ngIf="isAdd" class="submit" type="submit" mat-flat-button [disabled]="this.form.invalid">Save</button>
+    </form>
+</div>
